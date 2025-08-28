@@ -788,6 +788,19 @@ export default function CarEditorTycoon() {
     usesToday: 0
   }));
 
+  // Prestige functions (moved here to avoid hoisting issues)
+  const getPrestigePerkEffect = (perkId) => {
+    const perk = CONFIG.balance.prestige.perks.find(p => p.id === perkId);
+    if (!perk) return 0;
+    return prestigePoints * perk.value;
+  };
+
+  const getPrestigeSpawnRateBonus = () => getPrestigePerkEffect("spawn_rate");
+  const getPrestigeSalaryReduction = () => getPrestigePerkEffect("salary_reduction");
+  const getPrestigeTrainingEfficiency = () => getPrestigePerkEffect("training_efficiency");
+  const getPrestigePCEfficiency = () => getPrestigePerkEffect("pc_efficiency");
+  const getPrestigeEnergyEfficiency = () => getPrestigePerkEffect("energy_efficiency");
+
   // Persist
   useEffect(() => { saveLS("editors", editors); }, [editors]);
   useEffect(() => { saveLS("pcs", pcs); }, [pcs]);
@@ -2061,18 +2074,6 @@ export default function CarEditorTycoon() {
     return reputation >= CONFIG.balance.prestige.requirements.reputation && 
            cash >= CONFIG.balance.prestige.requirements.cash;
   };
-
-  const getPrestigePerkEffect = (perkId) => {
-    const perk = CONFIG.balance.prestige.perks.find(p => p.id === perkId);
-    if (!perk) return 0;
-    return prestigePoints * perk.value;
-  };
-
-  const getPrestigeSpawnRateBonus = () => getPrestigePerkEffect("spawn_rate");
-  const getPrestigeSalaryReduction = () => getPrestigePerkEffect("salary_reduction");
-  const getPrestigeTrainingEfficiency = () => getPrestigePerkEffect("training_efficiency");
-  const getPrestigePCEfficiency = () => getPrestigePerkEffect("pc_efficiency");
-  const getPrestigeEnergyEfficiency = () => getPrestigePerkEffect("energy_efficiency");
 
   const performPrestige = () => {
     if (!canPrestige()) {
