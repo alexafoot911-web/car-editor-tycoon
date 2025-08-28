@@ -2,6 +2,8 @@
 
 A React-based tycoon game where you manage a car editing studio. Build your team, upgrade equipment, complete jobs, and grow your reputation in this addictive browser game!
 
+<!-- Trigger deployment - JavaScript hoisting fix applied -->
+
 ## 🎮 Features
 
 - **Team Management**: Hire editors, buy PCs, and manage your studio
