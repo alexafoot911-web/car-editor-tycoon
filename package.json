@@ -1,6 +1,6 @@
 {
   "name": "car-editor-tycoon",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A React-based car editor tycoon game with advanced features",
   "type": "module",
   "scripts": {
